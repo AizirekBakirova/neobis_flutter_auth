@@ -26,7 +26,7 @@ class TextFormFieldWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(50),
                   borderSide: BorderSide.none),
               hintText: hintText,
-              hintStyle: TextStyle(
+              hintStyle: const TextStyle(
                 color: Colors.white,
                 fontSize: 23,
               )),
