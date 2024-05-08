@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "816159040397",
+    "project_id": "neobisflutterauth",
+    "storage_bucket": "neobisflutterauth.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:816159040397:android:b62f2fffb7b7b1a7fb93c4",
+        "android_client_info": {
+          "package_name": "com.example.neobis_flutter_auth"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7r7WS-_mh6pQ22_5MigEKBE82JRpISTE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
