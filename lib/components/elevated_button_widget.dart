@@ -2,16 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:neobis_flutter_auth/styles/app_colors.dart';
 
 class ElevatedButtonWidget extends StatelessWidget {
-  const ElevatedButtonWidget({
-    super.key,
-  });
+  ElevatedButtonWidget({super.key, required this.onPressed});
+  void Function()? onPressed;
+
+  final emailController = TextEditingController();
+
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 70,
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onPressed,
         style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.elevatedButtonColor,
             minimumSize: const Size(
