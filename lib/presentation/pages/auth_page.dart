@@ -18,7 +18,12 @@ class _AuthPageState extends State<AuthPage> {
 
   final passwordController = TextEditingController();
 
-  final _formKey = GlobalKey();
+  final _formKey = GlobalKey<FormState>();
+  void signUserUp() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text, password: passwordController.text);
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -38,55 +43,34 @@ class _AuthPageState extends State<AuthPage> {
                   ),
                   const SizedBox(height: 70),
                   TextFormFieldWidget(
+                    controller: emailController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Электронная почта не может быть пустой';
+                      } else if (value != emailController) {
+                        return 'Неправильная электронная почта';
+                      }
+                      return null;
+                    },
                     hintText: 'Email',
+                    obscureText: false,
                   ),
                   TextFormFieldWidget(
+                    controller: passwordController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Пароль не может быть пустым';
+                      } else if (value != passwordController) {
+                        return 'Неправильный пароль';
+                      }
+                      return null;
+                    },
                     hintText: 'Password',
-                  ),
-                  const Text(
-                    'Lorem ipsum',
-                    style: TextStyle(color: Colors.white, fontSize: 18),
+                    obscureText: true,
                   ),
                   const SizedBox(height: 70),
                   ElevatedButtonWidget(
-                    onPressed: () {
-                      showDialog(
-                          context: context,
-                          builder: (context) {
-                            return const Center(
-                              child: CircularProgressIndicator(),
-                            );
-                          });
-                      FirebaseAuth.instance
-                          .createUserWithEmailAndPassword(
-                              email: emailController.text,
-                              password: passwordController.text)
-                          .then((value) {
-                        print('Created New Account');
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const RegisterPage()));
-                      }).onError((error, stackTrace) {
-                        print('Error ${error.toString()}');
-                      });
-                      Navigator.pop(context);
-                      // if (_formKey.currentState!.validate()) {
-                      //   _formKey.currentState!.save();
-                      //   Navigator.push(
-                      //       context,
-                      //       MaterialPageRoute(
-                      //           builder: (context) => const GooglePage()));
-                      // }
-
-                      // if (_formKey.currentState!.validate()) {
-                      //   _formKey.currentState!.save();
-                      //   Navigator.push(
-                      //       context,
-                      //       MaterialPageRoute(
-                      //           builder: (context) => const GooglePage()));
-                      // }
-                    },
+                    onPressed: () {},
                   ),
                   const SizedBox(height: 20),
                   Row(
@@ -98,13 +82,7 @@ class _AuthPageState extends State<AuthPage> {
                       ),
                       const SizedBox(width: 5),
                       InkWell(
-                        onTap: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: ((context) =>
-                                      const RegisterPage())));
-                        },
+                        onTap: signUserUp,
                         child: const Text(
                           'Sign up',
                           style: TextStyle(color: Colors.red, fontSize: 18),

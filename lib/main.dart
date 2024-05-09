@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:neobis_flutter_auth/presentation/pages/auth_firebase_page.dart';
 import 'package:neobis_flutter_auth/presentation/pages/auth_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         fontFamily: 'Urbanist',
       ),
-      home: const AuthPage(),
+      home: AuthFirebasePage(),
     );
   }
 }

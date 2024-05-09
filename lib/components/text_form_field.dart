@@ -5,49 +5,42 @@ class TextFormFieldWidget extends StatelessWidget {
   TextFormFieldWidget({
     super.key,
     required this.hintText,
+    this.controller,
+    required this.obscureText,
+    this.validator,
+    this.suffixIcon,
   });
+  final dynamic controller;
+  final bool obscureText;
   final String hintText;
-
-  final emailController = TextEditingController();
-
-  final passwordController = TextEditingController();
-
-  final _formKey = GlobalKey();
+  final dynamic validator;
+  final Widget? suffixIcon;
 
   @override
   Widget build(BuildContext context) {
-    return Form(
-      key: _formKey,
-      child: Padding(
-        padding: const EdgeInsets.only(right: 20, left: 20),
-        child: SizedBox(
-          height: 100,
-          child: TextFormField(
-            controller: emailController,
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Email cannot be empty';
-              } else if (value != emailController) {
-                return 'Wrong email';
-              }
-              return null;
-            },
-            textAlign: TextAlign.center,
-            decoration: InputDecoration(
-                filled: true,
-                fillColor: AppColors.textFormFieldColor,
-                focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(50),
-                    borderSide: BorderSide.none),
-                enabledBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(50),
-                    borderSide: BorderSide.none),
-                hintText: hintText,
-                hintStyle: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 23,
-                )),
-          ),
+    return Padding(
+      padding: const EdgeInsets.only(right: 20, left: 20),
+      child: SizedBox(
+        height: 100,
+        child: TextFormField(
+          controller: controller,
+          validator: validator,
+          obscureText: obscureText,
+          textAlign: TextAlign.center,
+          decoration: InputDecoration(
+              filled: true,
+              fillColor: AppColors.textFormFieldColor,
+              focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(50),
+                  borderSide: BorderSide.none),
+              enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(50),
+                  borderSide: BorderSide.none),
+              hintText: hintText,
+              hintStyle: const TextStyle(
+                color: Colors.white,
+                fontSize: 23,
+              )),
         ),
       ),
     );

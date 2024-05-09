@@ -2,12 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:neobis_flutter_auth/styles/app_colors.dart';
 
 class ElevatedButtonWidget extends StatelessWidget {
-  ElevatedButtonWidget({super.key, required this.onPressed});
-  void Function()? onPressed;
-
-  final emailController = TextEditingController();
-
-  final passwordController = TextEditingController();
+  const ElevatedButtonWidget({super.key, required this.onPressed});
+  final void Function()? onPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +14,7 @@ class ElevatedButtonWidget extends StatelessWidget {
         style: ElevatedButton.styleFrom(
             backgroundColor: AppColors.elevatedButtonColor,
             minimumSize: const Size(
-              370,
+              350,
               50,
             ),
             shape: RoundedRectangleBorder(
