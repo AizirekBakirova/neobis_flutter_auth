@@ -2,8 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:neobis_flutter_auth/components/elevated_button_widget.dart';
 import 'package:neobis_flutter_auth/components/text_form_field.dart';
+import 'package:neobis_flutter_auth/presentation/pages/home_page.dart';
 import 'package:neobis_flutter_auth/presentation/pages/register_page.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:neobis_flutter_auth/styles/app_colors.dart';
 
 class LoginPage extends StatefulWidget {
@@ -14,12 +15,11 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final emailController = TextEditingController();
-
-  final passwordController = TextEditingController();
-
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  void signUserIn() {
+
+  void goToSignUp() {
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -27,23 +27,35 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-  // void signUserIn() async {
-  //   showDialog(
-  //     context: context,
-  //     builder: (context) {
-  //       return const Center(
-  //         child: CircularProgressIndicator(),
-  //       );
-  //     },
-  //   );
-  //   try {
-  //     await FirebaseAuth.instance.signInWithEmailAndPassword(
-  //         email: emailController.text, password: passwordController.text);
-  //     Navigator.pop(context);
-  //   } on FirebaseAuthException catch (e) {
-  //     Navigator.pop(context);
-  //   }
-  // }
+
+  void signUserIn() async {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return Center(
+          child: CircularProgressIndicator(),
+        );
+      },
+    );
+    FirebaseAuth.instance
+        .signInWithEmailAndPassword(
+            email: _emailController.text, password: _passwordController.text)
+        .then(
+          (value) => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => HomePage(),
+            ),
+          ),
+        );
+    Navigator.pop(context);
+
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => HomePage()));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,12 +76,12 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 70),
                   TextFormFieldWidget(
-                    controller: emailController,
+                    controller: _emailController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Электронная почта не может быть пустой';
-                      } else if (value != emailController) {
-                        return 'Неправильная электронная почта';
+                        return 'Email cannot be empty';
+                      } else if (value != _emailController) {
+                        return 'Incorrect email';
                       }
                       return null;
                     },
@@ -77,12 +89,12 @@ class _LoginPageState extends State<LoginPage> {
                     obscureText: false,
                   ),
                   TextFormFieldWidget(
-                    controller: passwordController,
+                    controller: _passwordController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Пароль не может быть пустым';
-                      } else if (value != passwordController) {
-                        return 'Неправильный пароль';
+                        return 'Password cannot be empty';
+                      } else if (value != _passwordController) {
+                        return 'Incorrect password';
                       }
                       return null;
                     },
@@ -91,7 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 70),
                   ElevatedButtonWidget(
-                    onPressed: () {},
+                    onPressed: signUserIn,
                     text: 'Sign In',
                   ),
                   const SizedBox(height: 30),
@@ -103,8 +115,8 @@ class _LoginPageState extends State<LoginPage> {
                         style: TextStyle(color: Colors.white, fontSize: 18),
                       ),
                       const SizedBox(width: 5),
-                      InkWell(
-                        onTap: signUserIn,
+                      GestureDetector(
+                        onTap: goToSignUp,
                         child: const Text(
                           'Sign up',
                           style: TextStyle(color: Colors.red, fontSize: 18),

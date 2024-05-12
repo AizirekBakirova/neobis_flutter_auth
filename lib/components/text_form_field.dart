@@ -28,19 +28,21 @@ class TextFormFieldWidget extends StatelessWidget {
           obscureText: obscureText,
           textAlign: TextAlign.center,
           decoration: InputDecoration(
-              filled: true,
-              fillColor: AppColors.textFormFieldColor,
-              focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(50),
-                  borderSide: BorderSide.none),
-              enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(50),
-                  borderSide: BorderSide.none),
-              hintText: hintText,
-              hintStyle: const TextStyle(
-                color: Colors.white,
-                fontSize: 23,
-              )),
+            filled: true,
+            fillColor: AppColors.textFormFieldColor,
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(50),
+                borderSide: BorderSide.none),
+            enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(50),
+                borderSide: BorderSide.none),
+            hintText: hintText,
+            hintStyle: const TextStyle(
+              color: Colors.white,
+              fontSize: 23,
+            ),
+            errorStyle: TextStyle(fontSize: 16),
+          ),
         ),
       ),
     );
