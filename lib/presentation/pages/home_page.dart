@@ -7,7 +7,7 @@ class HomePage extends StatelessWidget {
 
   final user = FirebaseAuth.instance.currentUser!;
 
-  void signUserOut() {
+  void _signUserOut() {
     FirebaseAuth.instance.signOut();
   }
 
@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: AppColors.backGroundColor,
         actions: [
-          IconButton(onPressed: signUserOut, icon: const Icon(Icons.logout))
+          IconButton(onPressed: _signUserOut, icon: const Icon(Icons.logout))
         ],
       ),
       body: Center(

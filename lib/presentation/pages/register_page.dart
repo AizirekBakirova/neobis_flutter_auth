@@ -17,7 +17,7 @@ class _RegisterPageState extends State<RegisterPage> {
   final _passwordController = TextEditingController();
   final _confirmPasswordController = TextEditingController();
 
-  void signUserUp() async {
+  void _signUserUp() async {
     if (_passwordController.text == _confirmPasswordController.text) {
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
@@ -31,11 +31,11 @@ class _RegisterPageState extends State<RegisterPage> {
         );
       }).onError((error, stackTrace) {});
     } else {
-      showErrorMessage('Passwords don`t match!');
+      _showErrorMessage('Passwords don`t match!');
     }
   }
 
-  void showErrorMessage(String message) {
+  void _showErrorMessage(String message) {
     showDialog(
         context: context,
         builder: (context) {
@@ -86,7 +86,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 ),
                 const SizedBox(height: 10),
                 ElevatedButtonWidget(
-                  onPressed: signUserUp,
+                  onPressed: _signUserUp,
                   text: 'Sign Up',
                 ),
               ],

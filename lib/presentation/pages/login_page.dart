@@ -18,7 +18,7 @@ class _LoginPageState extends State<LoginPage> {
   final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  void goToSignUp() {
+  void _goToSignUp() {
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -27,7 +27,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void signUserIn() async {
+  void _signUserIn() async {
     showDialog(
       context: context,
       builder: (context) {
@@ -102,7 +102,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 70),
                   ElevatedButtonWidget(
-                    onPressed: signUserIn,
+                    onPressed: _signUserIn,
                     text: 'Sign In',
                   ),
                   const SizedBox(height: 30),
@@ -115,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       const SizedBox(width: 5),
                       GestureDetector(
-                        onTap: goToSignUp,
+                        onTap: _goToSignUp,
                         child: const Text(
                           'Sign up',
                           style: TextStyle(color: Colors.red, fontSize: 18),
