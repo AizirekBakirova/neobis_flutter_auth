@@ -2,12 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:neobis_flutter_auth/components/elevated_button_widget.dart';
 import 'package:neobis_flutter_auth/components/text_form_field.dart';
-import 'package:neobis_flutter_auth/presentation/pages/home_page.dart';
 import 'package:neobis_flutter_auth/presentation/pages/login_page.dart';
 import 'package:neobis_flutter_auth/styles/app_colors.dart';
 
 class RegisterPage extends StatefulWidget {
-  RegisterPage({super.key});
+  const RegisterPage({super.key});
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -27,7 +26,7 @@ class _RegisterPageState extends State<RegisterPage> {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => LoginPage(),
+            builder: (context) => const LoginPage(),
           ),
         );
       }).onError((error, stackTrace) {});
@@ -47,7 +46,7 @@ class _RegisterPageState extends State<RegisterPage> {
             title: Center(
               child: Text(
                 message,
-                style: TextStyle(color: Colors.black45, fontSize: 20),
+                style: const TextStyle(color: Colors.black45, fontSize: 20),
               ),
             ),
           );

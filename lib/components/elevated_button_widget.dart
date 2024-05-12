@@ -20,7 +20,7 @@ class ElevatedButtonWidget extends StatelessWidget {
                 borderRadius: BorderRadius.circular(50))),
         child: Text(
           text,
-          style: TextStyle(color: Colors.black, fontSize: 23),
+          style: const TextStyle(color: Colors.black, fontSize: 23),
         ),
       ),
     );

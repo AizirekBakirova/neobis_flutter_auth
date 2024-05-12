@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:neobis_flutter_auth/styles/app_colors.dart';
 
@@ -17,12 +16,14 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.backGroundColor,
-        actions: [IconButton(onPressed: signUserOut, icon: Icon(Icons.logout))],
+        actions: [
+          IconButton(onPressed: signUserOut, icon: const Icon(Icons.logout))
+        ],
       ),
       body: Center(
           child: Text(
-        'WELCOME ' + user.email!,
-        style: TextStyle(fontSize: 20),
+        'WELCOME ${user.email!}',
+        style: const TextStyle(fontSize: 20),
       )),
     );
   }

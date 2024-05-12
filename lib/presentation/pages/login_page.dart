@@ -4,7 +4,6 @@ import 'package:neobis_flutter_auth/components/elevated_button_widget.dart';
 import 'package:neobis_flutter_auth/components/text_form_field.dart';
 import 'package:neobis_flutter_auth/presentation/pages/home_page.dart';
 import 'package:neobis_flutter_auth/presentation/pages/register_page.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:neobis_flutter_auth/styles/app_colors.dart';
 
 class LoginPage extends StatefulWidget {
@@ -32,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
     showDialog(
       context: context,
       builder: (context) {
-        return Center(
+        return const Center(
           child: CircularProgressIndicator(),
         );
       },

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:neobis_flutter_auth/styles/app_colors.dart';
 
 class TextFormFieldWidget extends StatelessWidget {
-  TextFormFieldWidget({
+  const TextFormFieldWidget({
     super.key,
     required this.hintText,
     this.controller,
@@ -41,7 +41,7 @@ class TextFormFieldWidget extends StatelessWidget {
               color: Colors.white,
               fontSize: 23,
             ),
-            errorStyle: TextStyle(fontSize: 16),
+            errorStyle: const TextStyle(fontSize: 16),
           ),
         ),
       ),
